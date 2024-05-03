@@ -1,5 +1,10 @@
-import { type PageProps } from "$fresh/server.ts";
-export default function App({ Component }: PageProps) {
+import type { State } from "../plugins/session.ts";
+import { defineApp } from "$fresh/server.ts";
+import { Navbar } from "../components/Navbar.tsx";
+
+export default defineApp<State>((_req, ctx) => {
+  const { sessionUser } = ctx.state;
+
   return (
     <html>
       <head>
@@ -9,8 +14,9 @@ export default function App({ Component }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
       </head>
       <body>
-        <Component />
+        <Navbar loggedIn={!!sessionUser} />
+        <ctx.Component />
       </body>
     </html>
   );
-}
+});
