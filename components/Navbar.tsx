@@ -1,4 +1,8 @@
-export function Navbar() {
+interface Props {
+  loggedIn: boolean;
+}
+
+export function Navbar({ loggedIn }: Props) {
   return (
     <nav>
       <div class="container mx-auto px-6 py-2 flex justify-between items-center">
@@ -23,7 +27,9 @@ export function Navbar() {
               <a class="px-4 font-bold" href="/">Home</a>
             </li>
             <li>
-              <a class="px-4 hover:text-gray-800" href="/login">Login</a>
+              {loggedIn
+                ? <a class="px-4 hover:text-gray-800" href="/logout">Logout</a>
+                : <a class="px-4 hover:text-gray-800" href="/login">Login</a>}
             </li>
           </ul>
         </div>

@@ -1,9 +1,7 @@
-import type { State } from "../plugins/session.ts";
 import { defineRoute } from "$fresh/server.ts";
+import type { SignedInState } from "../plugins/session.ts";
 
-export default defineRoute<State>((_req, ctx) => {
-  const { sessionUser } = ctx.state;
-
+export default defineRoute<SignedInState>((_req, _ctx) => {
   return (
     <div
       class="py-20"
@@ -24,6 +22,8 @@ export default defineRoute<State>((_req, ctx) => {
           start now
         </a>
       </div>
+
+      <div class="container mx-auto px-6">Account website!!</div>
     </div>
   );
 });
